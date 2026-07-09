@@ -36,3 +36,4 @@ A scaffolder action is a backend module (`createBackendModule({ pluginId: 'scaff
 - Action handler context (`ctx`) provides: `ctx.logger`, `ctx.workspacePath`, `ctx.input` (typed from the input schema), `ctx.output(name, value)` to emit outputs, `ctx.getInitiatorCredentials()` for the user identity, `ctx.createTemporaryDirectory()` for sandboxed work, `ctx.signal` (AbortSignal) for cancellation, `ctx.isDryRun` for dry-run mode.
 - Long-running actions should call `ctx.logger.info` periodically — the scaffolder UI streams logs to the user.
 - For dry-run support, set `supportsDryRun: true` and check `ctx.isDryRun` in the handler to skip side effects.
+- Templates can use `if: ${{ always() }}` and `if: ${{ failure() }}` to control step execution after failures — `always()` runs unconditionally, `failure()` runs only when a prior step failed. These are built into the template engine; action authors don't need to do anything to support them.

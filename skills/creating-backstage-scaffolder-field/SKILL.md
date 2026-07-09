@@ -39,7 +39,7 @@ For an adopter, the typical container is a `frontend-plugin-module` that targets
 
 ## Common gotchas
 
-- The blueprint and helper come from `@backstage/plugin-scaffolder-react/alpha`, not the main entry. The package is published with the API marked `@alpha`; track the import path against `../backstage/plugins/scaffolder-react/src/next/blueprints/FormFieldBlueprint.tsx`.
+- `FormFieldBlueprint`, `createFormField`, and `makeFieldSchema` come from `@backstage/plugin-scaffolder-react/alpha` (still `@alpha`). Note: `FormDecoratorBlueprint` and `createScaffolderFormDecorator` are on the stable `@backstage/plugin-scaffolder-react` entrypoint — don't confuse the two import paths.
 - The field component receives RJSF (`@rjsf/utils`) props via `FieldExtensionComponentProps`. Use `props.onChange(newValue)` to update form state; don't call `setState` on parents.
 - `makeFieldSchema({ output: z => z.string(), uiOptions: z => z.object({ ... }) })` produces both the runtime schema and a `TProps` type. Always declare `output`; `uiOptions` is optional but useful when templates pass field-specific config via `ui:options`.
 - Templates reference the field by the `name` you gave to `createFormField` and `FormFieldBlueprint.make` — keep them identical. Use PascalCase (`MyCoolPicker`); templates write `ui:field: 'MyCoolPicker'`.
