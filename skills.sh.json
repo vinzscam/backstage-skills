@@ -1,0 +1,41 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Getting Started",
+      "description": "Scaffold new plugins and discover available skills.",
+      "skills": ["creating-backstage-plugin"]
+    },
+    {
+      "title": "Frontend",
+      "description": "Build frontend plugins with the new frontend system and Backstage UI.",
+      "skills": [
+        "using-backstage-frontend-system",
+        "using-backstage-ui",
+        "using-backstage-identity",
+        "creating-backstage-entity-page-extension",
+        "creating-backstage-extension-blueprint"
+      ]
+    },
+    {
+      "title": "Backend",
+      "description": "Build backend plugins, modules, and use core services.",
+      "skills": [
+        "using-backstage-backend-system",
+        "using-backstage-backend-services",
+        "using-backstage-permissions"
+      ]
+    },
+    {
+      "title": "Catalog & Scaffolder",
+      "description": "Interact with the catalog and create custom scaffolder actions and fields.",
+      "skills": [
+        "using-backstage-catalog",
+        "creating-backstage-catalog-provider",
+        "creating-backstage-scaffolder-action",
+        "creating-backstage-scaffolder-field"
+      ]
+    }
+  ]
+}
