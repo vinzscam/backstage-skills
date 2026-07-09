@@ -23,7 +23,7 @@ yarn add @backstage/ui @remixicon/react
 Then add the stylesheet to your app entry (`packages/app/src/index.tsx` or similar):
 
 ```ts
-import "@backstage/ui/css/styles.css";
+import '@backstage/ui/css/styles.css';
 ```
 
 ## Choose the right component
@@ -64,8 +64,8 @@ Don't manually wire `useState` for loading/error/data. Use `react-use` hooks:
 Manual `useState` for `{ loading, error, value }` is an anti-pattern in this codebase: it duplicates logic the hook handles correctly (race conditions, unmount-during-fetch, etc.). The catalog and identity references show `useAsync`; the same applies anywhere data is fetched.
 
 ```tsx
-import useAsyncFn from "react-use/lib/useAsyncFn";
-import { Button, Skeleton, Alert, Text } from "@backstage/ui";
+import useAsyncFn from 'react-use/lib/useAsyncFn';
+import { Button, Skeleton, Alert, Text } from '@backstage/ui';
 
 export const FetchOnDemand = () => {
   const [{ loading, error, value }, fetch] = useAsyncFn(async (id: string) => {
@@ -74,7 +74,7 @@ export const FetchOnDemand = () => {
 
   return (
     <>
-      <Button onClick={() => fetch("foo")}>Fetch</Button>
+      <Button onClick={() => fetch('foo')}>Fetch</Button>
       {loading && <Skeleton width={200} height={20} />}
       {error && <Alert status="danger" title={error.message} />}
       {value && <Text>{value.name}</Text>}

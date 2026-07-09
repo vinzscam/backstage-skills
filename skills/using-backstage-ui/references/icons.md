@@ -5,7 +5,7 @@ BUI uses [Remix Icons](https://remixicon.com) via the `@remixicon/react` package
 ## Standalone usage
 
 ```tsx
-import { RiSearchLine, RiAddLine, RiDeleteBinLine } from "@remixicon/react";
+import { RiSearchLine, RiAddLine, RiDeleteBinLine } from '@remixicon/react';
 
 <RiSearchLine size={20} />;
 <RiAddLine size={16} />;
@@ -70,12 +70,12 @@ Icons render as SVG elements without text content, so `findByText` won't locate 
 ```
 
 ```tsx
-const button = await findByTestId("delete-btn");
+const button = await findByTestId('delete-btn');
 fireEvent.click(button);
 ```
 
 For icons inside `ButtonIcon`, prefer querying by the `aria-label`:
 
 ```tsx
-const button = await findByRole("button", { name: "delete" });
+const button = await findByRole('button', { name: 'delete' });
 ```

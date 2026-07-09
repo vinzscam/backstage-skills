@@ -24,6 +24,22 @@ import { Box, Container, Flex, Grid } from '@backstage/ui';
 
 `Flex` props: `direction="row"|"column"`, `align`, `justify` (use `"between"`, not `"space-between"`). `gap` is set via inline `style` with a BUI token or via `style={{ gap: 16 }}`.
 
+**Flex-item props:** `Box`, `Flex`, `Grid`, and `Card` all accept `grow`, `shrink`, and `basis` props. Each is responsive (`number | boolean | Record<Breakpoint, …>`); booleans map to `1`/`0`.
+
+```tsx
+<Flex style={{ gap: 'var(--bui-space-4)' }}>
+  <Box grow>{/* fills remaining space */}</Box>
+  <Box shrink={false} basis="300px">
+    {/* fixed 300px, won't shrink */}
+  </Box>
+</Flex>;
+
+{
+  /* Responsive: only grow on md+ */
+}
+<Card grow={{ initial: false, md: true }}>…</Card>;
+```
+
 ### Typography
 
 ```tsx
@@ -89,6 +105,52 @@ import {
 ```
 
 Note: `TextField`'s `onChange` receives the new string value directly, not an event. Use `isRequired` (not `required`).
+
+### Combobox
+
+A filterable dropdown with type-ahead. Use instead of `Select` when the option list is long or supports search.
+
+```tsx
+import { Combobox } from '@backstage/ui';
+
+<Combobox
+  label="Owner"
+  placeholder="Search teams…"
+  search
+  options={[
+    { id: 'team-a', label: 'Team A' },
+    { id: 'team-b', label: 'Team B' },
+  ]}
+  onSelectionChange={key => setOwner(key)}
+/>;
+```
+
+Data supply variants: `options` (sync list), async `options` (`AsyncListSource`), `items` + render function, or `search={{ mode: 'server' }}` for server-side filtering. Supports `allowsCustomValue` for free-text entry. Sectioned options via `{ title, options: [...] }`.
+
+### DatePicker / DateRangePicker
+
+Built on React Aria with `@internationalized/date` values.
+
+```tsx
+import { DatePicker, DateRangePicker } from '@backstage/ui';
+import { parseDate } from '@internationalized/date';
+
+<DatePicker
+  label="Start date"
+  defaultValue={parseDate('2026-01-15')}
+  isRequired
+/>;
+
+<DateRangePicker
+  label="Period"
+  defaultValue={{
+    start: parseDate('2026-01-01'),
+    end: parseDate('2026-01-31'),
+  }}
+/>;
+```
+
+Props: `value`/`defaultValue`/`onChange`, `minValue`, `maxValue`, `isDateUnavailable` (callback to disable specific dates), `granularity` (`'day'`|`'hour'`|`'minute'`|`'second'`), `isRequired`, `isDisabled`. Add `@internationalized/date` to your plugin's dependencies.
 
 ### Feedback
 
@@ -167,6 +229,33 @@ import { RiMore2Line } from '@remixicon/react';
   </Menu>
 </MenuTrigger>;
 ```
+
+### Header
+
+`Header` gained `sticky`, `description`, `tags`, and `metadata` props:
+
+```tsx
+import { Header, HeaderMetadataStatus } from '@backstage/ui';
+
+<Header
+  title="My Service"
+  sticky
+  description="Handles user auth. See [docs](https://docs.example.com)."
+  tags={[{ label: 'TypeScript' }, { label: 'Platform', href: '/platform' }]}
+  metadata={[
+    { label: 'Owner', value: 'platform-team' },
+    {
+      label: 'Status',
+      value: <HeaderMetadataStatus label="Healthy" color="success" />,
+    },
+  ]}
+/>;
+```
+
+- `sticky` — pins the title+actions bar to the top of the scroll container.
+- `description` — markdown string (inline links only) rendered below the title.
+- `tags` — array of `{ label, href? }` rendered as chips above the title.
+- `metadata` — array of `{ label, value: ReactNode }` rendered as key-value pairs. Use `HeaderMetadataUsers` for avatar lists or `HeaderMetadataStatus` for colored status indicators.
 
 ### Navigation — Tabs
 
