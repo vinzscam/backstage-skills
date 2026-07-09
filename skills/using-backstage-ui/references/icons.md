@@ -5,7 +5,7 @@ BUI uses [Remix Icons](https://remixicon.com) via the `@remixicon/react` package
 ## Standalone usage
 
 ```tsx
-import { RiSearchLine, RiAddLine, RiDeleteBinLine } from '@remixicon/react';
+import { RiSearchLine, RiAddLine, RiDeleteBinLine } from "@remixicon/react";
 
 <RiSearchLine size={20} />;
 <RiAddLine size={16} />;
@@ -56,10 +56,6 @@ When applying BUI defaults to a freshly scaffolded plugin:
 2. Add `@remixicon/react` to the plugin's `package.json` dependencies.
 3. Remove `@material-ui/icons` from `package.json` if no longer used in this plugin.
 
-### Known type-compat fallback
-
-`NavItemBlueprint` (from `@backstage/frontend-plugin-api`) takes an `icon` prop typed as MUI `IconComponent`. Remix icons are not type-compatible there. For the nav item icon specifically, keep using a MUI icon. Use Remix icons for everything else in the plugin.
-
 ## Tests
 
 Icons render as SVG elements without text content, so `findByText` won't locate them. Use `data-testid` when an icon is the only thing identifying a control:
@@ -74,12 +70,12 @@ Icons render as SVG elements without text content, so `findByText` won't locate 
 ```
 
 ```tsx
-const button = await findByTestId('delete-btn');
+const button = await findByTestId("delete-btn");
 fireEvent.click(button);
 ```
 
 For icons inside `ButtonIcon`, prefer querying by the `aria-label`:
 
 ```tsx
-const button = await findByRole('button', { name: 'delete' });
+const button = await findByRole("button", { name: "delete" });
 ```

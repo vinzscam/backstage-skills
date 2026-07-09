@@ -60,15 +60,20 @@ If the plugin previously used a separate `./alpha` entry, collapse it into the m
 
 ### Plugin icon
 
-Prefer `@remixicon/react` icons for the plugin icon. If the plugin already had an MUI icon and replacing it is out of scope, you can keep it with `fontSize="inherit"`:
+Prefer `@remixicon/react` icons for the `icon` prop in `createFrontendPlugin`. If the plugin already uses an MUI icon and replacing it is out of scope, you can keep it with `fontSize="inherit"`:
 
 ```tsx
 import CategoryIcon from '@material-ui/icons/Category';
 
-icon: <CategoryIcon fontSize="inherit" />,
+export default createFrontendPlugin({
+  pluginId: 'my-plugin',
+  title: 'My Plugin',
+  icon: <CategoryIcon fontSize="inherit" />,
+  // ...
+});
 ```
 
-Note: this works for the plugin icon and for `PageBlueprint`/`PluginHeader`, but `NavItemBlueprint`'s `icon` prop requires an MUI `IconComponent` type — Remix icons are not compatible there.
+This icon propagates to `PageBlueprint`, `PluginHeader`, and the sidebar navigation entry — Remix icons and MUI icons both work in all of these.
 
 ## Post-scaffold usage
 

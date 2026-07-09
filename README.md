@@ -58,7 +58,7 @@ This pack assumes the new frontend system (NFS), the Backstage UI design system 
 - **Catalog providers** scaffold an `EntityProvider` class plus a module registering it against `catalogProcessingExtensionPoint`.
 - **Scaffolder actions** scaffold a `createTemplateAction` plus a module registering it against `scaffolderActionsExtensionPoint`.
 
-Pattern skills fall back to `@material-ui/core` only for the two known cases where `@backstage/ui` doesn't have an equivalent (`NavItemBlueprint`'s MUI-typed `icon` prop, and `@material-ui/lab` `Timeline`).
+Pattern skills fall back to `@material-ui/core` only for the cases where `@backstage/ui` doesn't have an equivalent (`@material-ui/lab` `Timeline`).
 
 ## Contributing
 

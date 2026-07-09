@@ -35,7 +35,7 @@ export function MyPage() {
 
 The framework's `PageLayout` automatically renders `PluginHeader` from the plugin's `title` and `icon`. The page component should not include `Page`, `Header`, or `PageWithHeader` from `@backstage/core-components` — those are old-system constructs. Use `Container` from `@backstage/ui` as the outermost wrapper for page content — it provides proper spacing and max-width constraints.
 
-`title` and `icon` params on `PageBlueprint` are only needed when they should differ from the plugin's own values. If omitted, the plugin-level values are used.
+`PageBlueprint` inherits the plugin's `title` and `icon` by default — only set them explicitly when the page should display something different. The same values are used for the sidebar navigation entry, so no separate registration is needed.
 
 ### Page with subtitle / custom actions
 

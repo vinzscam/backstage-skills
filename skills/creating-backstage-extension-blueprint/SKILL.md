@@ -13,7 +13,7 @@ You're authoring a frontend plugin and want to give other plugins or modules a t
 - A code-quality plugin that wants modules to register additional checks shown on a results page
 - A reusable "feature flag" plugin where modules contribute UI controls per flag
 
-This is the same pattern Backstage itself uses for `PageBlueprint`, `EntityCardBlueprint`, `EntityContentBlueprint`, `FormFieldBlueprint`, `NavItemBlueprint`. You're creating a new one of those *for your plugin*.
+This is the same pattern Backstage itself uses for `PageBlueprint`, `EntityCardBlueprint`, `EntityContentBlueprint`, `FormFieldBlueprint`, `ApiBlueprint`. You're creating a new one of those _for your plugin_.
 
 **Don't** create a blueprint when:
 
@@ -32,9 +32,9 @@ Both pieces are required and must agree on the input name and the data refs the 
 
 ## Choose the right pattern
 
-| Building... | Reference |
-|---|---|
-| The blueprint itself (`createExtensionBlueprint` definition) | references/defining-the-blueprint.md |
+| Building...                                                   | Reference                                  |
+| ------------------------------------------------------------- | ------------------------------------------ |
+| The blueprint itself (`createExtensionBlueprint` definition)  | references/defining-the-blueprint.md       |
 | The parent extension that collects contributions via `inputs` | references/parent-collecting-extensions.md |
 
 ## Two invocation modes

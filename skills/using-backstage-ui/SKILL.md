@@ -23,23 +23,23 @@ yarn add @backstage/ui @remixicon/react
 Then add the stylesheet to your app entry (`packages/app/src/index.tsx` or similar):
 
 ```ts
-import '@backstage/ui/css/styles.css';
+import "@backstage/ui/css/styles.css";
 ```
 
 ## Choose the right component
 
-| Need                   | Component                                                                                 | Reference                |
-| ---------------------- | ----------------------------------------------------------------------------------------- | ------------------------ |
-| Page layout / wrappers | `Box`, `Container`, `Flex`, `FullPage`, `Grid`                                            | references/components.md |
-| Typography             | `Text`                                                                                    | references/components.md |
-| Buttons / actions      | `Button`, `ButtonIcon`, `ButtonLink`                                                      | references/components.md |
-| Forms                  | `TextField`, `PasswordField`, `SearchField`, `Select`, `Checkbox`, `RadioGroup`, `Switch` | references/components.md |
-| Feedback               | `Alert`, `Skeleton`, `Tooltip`, `Tag`, `TagGroup`                                         | references/components.md |
-| Overlays               | `Dialog`, `Menu`, `Popover`                                                               | references/components.md |
-| Navigation             | `Tabs`, `Header`, `PluginHeader`, `Link`                                                  | references/components.md |
-| Data                   | `Table` (+ `useTable` hook), `List` (+ `ListRow`), `Avatar`, `Card`                       | references/components.md |
-| Icons                  | `@remixicon/react` (e.g. `RiSearchLine`, `RiAddLine`)                                     | references/icons.md      |
-| Styling                | CSS modules with BUI tokens (`--bui-space-*`, `--bui-fg-*`, `--bui-bg-*`)                 | references/styling.md    |
+| Need                   | Component                                                                                                                              | Reference                |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| Page layout / wrappers | `Box`, `Container`, `Flex`, `FullPage`, `Grid`                                                                                         | references/components.md |
+| Typography             | `Text`                                                                                                                                 | references/components.md |
+| Buttons / actions      | `Button`, `ButtonIcon`, `ButtonLink`                                                                                                   | references/components.md |
+| Forms                  | `TextField`, `PasswordField`, `SearchField`, `Select`, `Combobox`, `Checkbox`, `RadioGroup`, `Switch`, `DatePicker`, `DateRangePicker` | references/components.md |
+| Feedback               | `Alert`, `Skeleton`, `Tooltip`, `Tag`, `TagGroup`                                                                                      | references/components.md |
+| Overlays               | `Dialog`, `Menu`, `Popover`                                                                                                            | references/components.md |
+| Navigation             | `Tabs`, `Header`, `PluginHeader`, `Link`                                                                                               | references/components.md |
+| Data                   | `Table` (+ `useTable` hook), `List` (+ `ListRow`), `Avatar`, `Card`                                                                    | references/components.md |
+| Icons                  | `@remixicon/react` (e.g. `RiSearchLine`, `RiAddLine`)                                                                                  | references/icons.md      |
+| Styling                | CSS modules with BUI tokens (`--bui-space-*`, `--bui-fg-*`, `--bui-bg-*`)                                                              | references/styling.md    |
 
 ## Two invocation modes
 
@@ -52,7 +52,7 @@ import '@backstage/ui/css/styles.css';
 - `Flex` uses `justify="between"` (NOT `space-between`); `gap` goes via inline `style` or BUI tokens.
 - `Tooltip` requires `TooltipTrigger` as a parent.
 - `TextField`'s `onChange` receives a string directly, not an event object.
-- Two known fallbacks where BUI doesn't have an equivalent: `NavItemBlueprint`'s `icon` prop expects a MUI `IconComponent` type (Remix icons aren't compatible there); `@material-ui/lab` `Timeline` has no BUI replacement. Use MUI in those specific cases.
+- One known fallback where BUI doesn't have an equivalent: `@material-ui/lab` `Timeline` has no BUI replacement. Use MUI in that specific case.
 
 ## Data fetching convention
 
@@ -64,8 +64,8 @@ Don't manually wire `useState` for loading/error/data. Use `react-use` hooks:
 Manual `useState` for `{ loading, error, value }` is an anti-pattern in this codebase: it duplicates logic the hook handles correctly (race conditions, unmount-during-fetch, etc.). The catalog and identity references show `useAsync`; the same applies anywhere data is fetched.
 
 ```tsx
-import useAsyncFn from 'react-use/lib/useAsyncFn';
-import { Button, Skeleton, Alert, Text } from '@backstage/ui';
+import useAsyncFn from "react-use/lib/useAsyncFn";
+import { Button, Skeleton, Alert, Text } from "@backstage/ui";
 
 export const FetchOnDemand = () => {
   const [{ loading, error, value }, fetch] = useAsyncFn(async (id: string) => {
@@ -74,7 +74,7 @@ export const FetchOnDemand = () => {
 
   return (
     <>
-      <Button onClick={() => fetch('foo')}>Fetch</Button>
+      <Button onClick={() => fetch("foo")}>Fetch</Button>
       {loading && <Skeleton width={200} height={20} />}
       {error && <Alert status="danger" title={error.message} />}
       {value && <Text>{value.name}</Text>}
